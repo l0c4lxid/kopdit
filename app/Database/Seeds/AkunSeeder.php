@@ -1,0 +1,235 @@
+<?php
+
+namespace App\Database\Seeds;
+
+use CodeIgniter\Database\Seeder;
+
+class AkunSeeder extends Seeder
+{
+    public function run()
+    {
+        // 1. Nonaktifkan Foreign Key Checks
+        $this->db->query('SET FOREIGN_KEY_CHECKS=0;');
+
+        // 2. Hapus data lama menggunakan truncate
+        $this->db->table('akun')->truncate();
+
+        $now = date('Y-m-d H:i:s');
+
+        // Daftar Akun Baru berdasarkan "Uraian"
+        // Catatan: Kode akun, kategori, jenis, saldo_awal dipertahankan dari data lama
+        //          untuk menjaga konsistensi, hanya nama_akun yang diubah.
+        //          Akun yang tidak ada di daftar "Uraian" baru tidak dimasukkan.
+        $data = [
+            // Akun kas dan simpanan bank bisa dibuat berbeda jenis dan kategori
+            ['kode_akun' => 'AUTO086', 'nama_akun' => 'Kas', 'kategori' => 'ASSET', 'jenis' => 'Debit', 'saldo_awal' => 221262355, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO087', 'nama_akun' => 'Simpanan di Bank', 'kategori' => 'ASSET', 'jenis' => 'Debit', 'saldo_awal' => 296712945, 'created_at' => $now, 'updated_at' => $now],
+
+            ['kode_akun' => 'AUTO003', 'nama_akun' => 'Simpanan Deposito', 'kategori' => 'ASSET', 'jenis' => 'Debit', 'saldo_awal' => 350000000, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AST001', 'nama_akun' => 'Akumulasi Penyusutan Inventaris Komputer', 'kategori' => 'ASSET', 'jenis' => 'Kredit', 'saldo_awal' => 16750000, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AST002', 'nama_akun' => 'Akumulasi Penyusutan Inventaris Mebel', 'kategori' => 'ASSET', 'jenis' => 'Kredit', 'saldo_awal' => 43000000, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AST003', 'nama_akun' => 'Akumulasi Penyusutan Inventaris Gedung', 'kategori' => 'ASSET', 'jenis' => 'Kredit', 'saldo_awal' => 36500000, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AST004', 'nama_akun' => 'Akumulasi Penyusutan Inventaris Kendaraan', 'kategori' => 'ASSET', 'jenis' => 'Kredit', 'saldo_awal' => 6500000, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AST005', 'nama_akun' => 'Akumulasi Penyusutan Tertangguh', 'kategori' => 'ASSET', 'jenis' => 'Kredit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'TAR001', 'nama_akun' => 'Tarik Dana dari Bank', 'kategori' => 'ASSET', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'UAN001', 'nama_akun' => 'Uang Pangkal', 'kategori' => 'ASSET', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'MOD001', 'nama_akun' => 'Modal Tetap', 'kategori' => 'ASSET', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'DUK005', 'nama_akun' => 'Inventaris Bangunan/Gedung', 'kategori' => 'ASSET', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'DUK013', 'nama_akun' => 'Pembelian Inventaris Mebel', 'kategori' => 'ASSET', 'jenis' => 'Debit', 'saldo_awal' => 57065100, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'DUK014', 'nama_akun' => 'Pembelian Inventaris Gedung', 'kategori' => 'ASSET', 'jenis' => 'Debit', 'saldo_awal' => 206759500, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'DUK015', 'nama_akun' => 'Pembelian Inventaris Komputer', 'kategori' => 'ASSET', 'jenis' => 'Debit', 'saldo_awal' => 29270000, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'DUK016', 'nama_akun' => 'Pembelian Inventaris Kendaraan', 'kategori' => 'ASSET', 'jenis' => 'Debit', 'saldo_awal' => 6500000, 'created_at' => $now, 'updated_at' => $now],
+
+            ['kode_akun' => 'PI001', 'nama_akun' => 'Piutang Biasa', 'kategori' => 'ASSET', 'jenis' => 'Debit', 'saldo_awal' => 3062648900, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'PI002', 'nama_akun' => 'Piutang Khusus', 'kategori' => 'ASSET', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'PI003', 'nama_akun' => 'Piutang Ragu-ragu', 'kategori' => 'ASSET', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'PI004', 'nama_akun' => 'Penyusutan Piutang Ragu-ragu', 'kategori' => 'ASSET', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'SI001', 'nama_akun' => 'Simpanan di BK3D', 'kategori' => 'ASSET', 'jenis' => 'Debit', 'saldo_awal' => 1282350, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'INV001', 'nama_akun' => 'Investasi', 'kategori' => 'ASSET', 'jenis' => 'Debit', 'saldo_awal' => 6800000, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'SD001', 'nama_akun' => 'Serta Data', 'kategori' => 'ASSET', 'jenis' => 'Debit', 'saldo_awal' => 135000, 'created_at' => $now, 'updated_at' => $now],
+
+            ['kode_akun' => 'PIN001', 'nama_akun' => 'Angsuran Pinjaman', 'kategori' => 'KEWAJIBAN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'CAP001', 'nama_akun' => 'CAP (Cadangan Aktiva Produktif)', 'kategori' => 'MODAL', 'jenis' => 'Kredit', 'saldo_awal' => 43700000, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'PND001', 'nama_akun' => 'Denda', 'kategori' => 'PENDAPATAN', 'jenis' => 'Kredit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'FEE001', 'nama_akun' => 'Fee (Anggota Keluar)', 'kategori' => 'PENDAPATAN', 'jenis' => 'Kredit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'PND002', 'nama_akun' => 'Fee Persentase (Profisi) 1%', 'kategori' => 'PENDAPATAN', 'jenis' => 'Kredit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'PND003', 'nama_akun' => 'Pendapatan Jasa Pinjaman', 'kategori' => 'PENDAPATAN', 'jenis' => 'Kredit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'PND008', 'nama_akun' => 'Jasa Piutang', 'kategori' => 'PENDAPATAN', 'jenis' => 'Kredit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'DAC002', 'nama_akun' => 'Penyisihan Dana Pemilihan Pengurus', 'kategori' => 'MODAL', 'jenis' => 'Kredit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'PIN002', 'nama_akun' => 'Pinjaman dari Bank Pembangunan Daerah (BPD)', 'kategori' => 'KEWAJIBAN', 'jenis' => 'Kredit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'RIS001', 'nama_akun' => 'Risiko (Re) 0,5%', 'kategori' => 'BEBAN', 'jenis' => 'Debit', 'saldo_awal' => 200845475, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'SIM001', 'nama_akun' => 'Simpanan Non-Saham', 'kategori' => 'KEWAJIBAN', 'jenis' => 'Kredit', 'saldo_awal' => 584981000, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'SIM006', 'nama_akun' => 'Jasa Simpanan Non-Saham', 'kategori' => 'KEWAJIBAN', 'jenis' => 'Kredit', 'saldo_awal' => 102580000, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'SIM002', 'nama_akun' => 'Simpanan Pokok (SP)', 'kategori' => 'MODAL', 'jenis' => 'Kredit', 'saldo_awal' => 10070000, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'SIM003', 'nama_akun' => 'Simpanan Sukarela (SS)', 'kategori' => 'KEWAJIBAN', 'jenis' => 'Kredit', 'saldo_awal' => 1255415307, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'SIM004', 'nama_akun' => 'Simpanan Wajib (SW)', 'kategori' => 'MODAL', 'jenis' => 'Kredit', 'saldo_awal' => 275962645, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'SIM005', 'nama_akun' => 'Simpanan Wajib Pinjam (SWP)', 'kategori' => 'MODAL', 'jenis' => 'Kredit', 'saldo_awal' => 461547125, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'TDP001', 'nama_akun' => 'Titipan Dana Kesejahteraan', 'kategori' => 'KEWAJIBAN', 'jenis' => 'Kredit', 'saldo_awal' => 68551000.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'TDP002', 'nama_akun' => 'Titipan Tunjangan Pesangon Karyawan', 'kategori' => 'KEWAJIBAN', 'jenis' => 'Kredit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'TDP003', 'nama_akun' => 'Titipan Dana RAT', 'kategori' => 'KEWAJIBAN', 'jenis' => 'Kredit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'TDP004', 'nama_akun' => 'Titipan Dana Pendampingan', 'kategori' => 'KEWAJIBAN', 'jenis' => 'Kredit', 'saldo_awal' => 4550000, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'TDP005', 'nama_akun' => 'Titipan Penyisihan Pajak SHU', 'kategori' => 'KEWAJIBAN', 'jenis' => 'Kredit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'PND004', 'nama_akun' => 'Pendapatan Lain-lain', 'kategori' => 'PENDAPATAN', 'jenis' => 'Kredit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'PND005', 'nama_akun' => 'Pendapatan Hibah', 'kategori' => 'PENDAPATAN', 'jenis' => 'Kredit', 'saldo_awal' => 35171455, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'PND006', 'nama_akun' => 'Pendapatan Jasa Simpanan Bank', 'kategori' => 'PENDAPATAN', 'jenis' => 'Kredit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'PND007', 'nama_akun' => 'Pendapatan Jasa Deposito', 'kategori' => 'PENDAPATAN', 'jenis' => 'Kredit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'TDP006', 'nama_akun' => 'Titipan Pajak Jasa Non Saham', 'kategori' => 'KEWAJIBAN', 'jenis' => 'Kredit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+
+            ['kode_akun' => 'PND011', 'nama_akun' => 'Tarik Simpanan Deposito', 'kategori' => 'PENDAPATAN', 'jenis' => 'Kredit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'PND010', 'nama_akun' => 'Pendapatan dari Tarik Titipan SHU', 'kategori' => 'PENDAPATAN', 'jenis' => 'Kredit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'FEE002', 'nama_akun' => 'Fee (BPKB)', 'kategori' => 'PENDAPATAN', 'jenis' => 'Kredit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'MOD002', 'nama_akun' => 'Penyisihan Dana Kesehatan', 'kategori' => 'MODAL', 'jenis' => 'Kredit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'MOD003', 'nama_akun' => 'Tabungan Hari Tua Karyawan', 'kategori' => 'MODAL', 'jenis' => 'Kredit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'KEW001', 'nama_akun' => 'Jaminan PJKR', 'kategori' => 'KEWAJIBAN', 'jenis' => 'Kredit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'MOD005', 'nama_akun' => 'Dana PDK', 'kategori' => 'MODAL', 'jenis' => 'Kredit', 'saldo_awal' => 47253351, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'MOD006', 'nama_akun' => 'Dana Sosial', 'kategori' => 'MODAL', 'jenis' => 'Kredit', 'saldo_awal' => 53116276, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'MOD007', 'nama_akun' => 'Simpanan Hasil Usaha', 'kategori' => 'MODAL', 'jenis' => 'Kredit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'MOD008', 'nama_akun' => 'Dana Pengelola', 'kategori' => 'MODAL', 'jenis' => 'Kredit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'KEW002', 'nama_akun' => 'Titipan Utang Pajak SHU', 'kategori' => 'KEWAJIBAN', 'jenis' => 'Kredit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'MOD010', 'nama_akun' => 'Penyisihhan Modal Simpanan Anggota', 'kategori' => 'MODAL', 'jenis' => 'Kredit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+
+            ['kode_akun' => 'AUTO001', 'nama_akun' => 'Pinjaman Anggota', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 3062648900, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO004', 'nama_akun' => 'Angsuran Pinjaman ke BPD', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO005', 'nama_akun' => 'Tarik Simpanan Pokok (SP)', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO006', 'nama_akun' => 'Tarik Simpanan Wajib (SW)', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO007', 'nama_akun' => 'Tarik Simpanan Wajib Pinjam (SWP)', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO008', 'nama_akun' => 'Tarik Simpanan Sukarela (SS)', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO009', 'nama_akun' => 'Tarik Simpanan Non-Saham', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO010', 'nama_akun' => 'Tarik Jasa Simpanan Non-Saham', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO011', 'nama_akun' => 'Tarik Titip (SP, SW, SWP, SS)', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO012', 'nama_akun' => 'Tarik Dana Pengurus', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO089', 'nama_akun' => 'Tarik Dana Pengawas', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO013', 'nama_akun' => 'Tarik Dana Karyawan', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO014', 'nama_akun' => 'Tarik Dana Pendidikan', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO015', 'nama_akun' => 'Tarik Dana Sosial', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO016', 'nama_akun' => 'Tarik Dana PDK', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO017', 'nama_akun' => 'Tarik Titipan Dana RAT', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO018', 'nama_akun' => 'Tarik Dana Risiko', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO019', 'nama_akun' => 'Tarik Dana Pemupukan Modal Tetap', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO020', 'nama_akun' => 'Tarik Dana CAP', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO021', 'nama_akun' => 'Tarik Sisa Hasil Usaha (SHU)', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO022', 'nama_akun' => 'Tarik THT', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO023', 'nama_akun' => 'Tarik Titipan Pajak', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO024', 'nama_akun' => 'Tarik Dana Kesejahteraan', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+
+            ['kode_akun' => 'DAC001', 'nama_akun' => 'Dana Cadangan RAT', 'kategori' => 'MODAL', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO025', 'nama_akun' => 'Tarik Dana Pendampingan', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO027', 'nama_akun' => 'Biaya Organisasi', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO028', 'nama_akun' => 'Biaya Gaji Karyawan', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO029', 'nama_akun' => 'Biaya Tunjangan Istri', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO030', 'nama_akun' => 'Biaya Tunjangan Anak', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO031', 'nama_akun' => 'THR (karyawan)', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO032', 'nama_akun' => 'Biaya Insentif Pengurus & Pengawas', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO070', 'nama_akun' => 'Biaya IPTW (Insentif Pekerja Tidak Tetap Wajib)', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO033', 'nama_akun' => 'Biaya Koordinator', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO034', 'nama_akun' => 'Biaya Minum', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO035', 'nama_akun' => 'Biaya Penjaga/Kebersihan', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO036', 'nama_akun' => 'THR Penjaga', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO037', 'nama_akun' => 'Biaya Harkop/Besar Nasional', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO038', 'nama_akun' => 'Biaya Transportasi', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO039', 'nama_akun' => 'Biaya Transportasi Rapat', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO040', 'nama_akun' => 'Biaya Bensin', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO041', 'nama_akun' => 'Biaya Lembur', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO042', 'nama_akun' => 'Biaya Non-Saham', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO043', 'nama_akun' => 'Biaya Perawatan Inventaris', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO044', 'nama_akun' => 'Biaya Kalender/Promosi', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO045', 'nama_akun' => 'Biaya Pendidikan', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO046', 'nama_akun' => 'Perawatan Gedung', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO047', 'nama_akun' => 'Biaya Dana Sosial', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO048', 'nama_akun' => 'Bonus Pencapaian Target', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO049', 'nama_akun' => 'Biaya Kesejahteraan', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO050', 'nama_akun' => 'Biaya Audit Pengawas', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO051', 'nama_akun' => 'Biaya Supervisi Pengurus', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO052', 'nama_akun' => 'Insentif Koordinator', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO053', 'nama_akun' => 'Biaya Syawalan', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO054', 'nama_akun' => 'Bingkisan Lebaran', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO055', 'nama_akun' => 'Seragam', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO056', 'nama_akun' => 'Biaya Bunga Hutang Bank', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO057', 'nama_akun' => 'Biaya Administrasi/Pajak Bank', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO058', 'nama_akun' => 'Pesangon Purna Karyawan', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO060', 'nama_akun' => 'Denda Pajak', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO061', 'nama_akun' => 'Biaya Pemilihan Pengawas/Pengurus', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO062', 'nama_akun' => 'Biaya BPJS', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO063', 'nama_akun' => 'Penyisihan Tunjangan Pensiun Karyawan', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 6600000, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO064', 'nama_akun' => 'Cadangan Aktiva Produktif (CAP)', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO065', 'nama_akun' => 'Penyisihan Dana Rapat Tahunan (RAT)', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 11125000, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO066', 'nama_akun' => 'Penyisihan Dana Kesejahteraan', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO067', 'nama_akun' => 'Penyertaan Modal Tetap', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO069', 'nama_akun' => 'Proyektor', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO072', 'nama_akun' => 'Penyisihan Pendampingan', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO074', 'nama_akun' => 'Penyusutan Tertagih', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO075', 'nama_akun' => 'Biaya Penyusutan Inventaris Mebel', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO076', 'nama_akun' => 'Biaya Penyusutan Inventaris Gedung', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO077', 'nama_akun' => 'Biaya Penyusutan Inventaris Kendaraan', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO078', 'nama_akun' => 'Biaya Penyusutan Inventaris Komputer', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO079', 'nama_akun' => 'Biaya Pajak Listrik', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO080', 'nama_akun' => 'Pajak PPH', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO081', 'nama_akun' => 'Pajak PBB', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO082', 'nama_akun' => 'Pajak SHU', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO083', 'nama_akun' => 'Biaya Pajak Wi-Fi', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO084', 'nama_akun' => 'Pajak Jasa Simpanan Bank', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO085', 'nama_akun' => 'Pajak Kendaraan', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+
+            ['kode_akun' => 'DUK001', 'nama_akun' => 'Tarik Dana Komisaris', 'kategori' => 'BEBAN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'DUK002', 'nama_akun' => 'Tarik Dana Supervisi', 'kategori' => 'BEBAN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'DUK003', 'nama_akun' => 'Tarik Dana RAT', 'kategori' => 'BEBAN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'DUK004', 'nama_akun' => 'Tarik Dana PJKR', 'kategori' => 'BEBAN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'DUK006', 'nama_akun' => 'Modal Anggota', 'kategori' => 'MODAL', 'jenis' => 'Kredit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'DUK007', 'nama_akun' => 'Biaya Tempat Pelayanan', 'kategori' => 'BEBAN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'DUK008', 'nama_akun' => 'Biaya Penyusutan Inventaris', 'kategori' => 'BEBAN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'DUK009', 'nama_akun' => 'Biaya Penyusutan Tertangguh', 'kategori' => 'BEBAN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'DUK010', 'nama_akun' => 'Tarik Dana Insentif PP', 'kategori' => 'BEBAN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'DUK011', 'nama_akun' => 'Biaya Penyisihan Dana RAT', 'kategori' => 'BEBAN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'DUK012', 'nama_akun' => 'Biaya Penyisihan Hutang Pajak', 'kategori' => 'BEBAN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'DUK017', 'nama_akun' => 'Biaya Penyisihan Dana Cadangan', 'kategori' => 'BEBAN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'DUK018', 'nama_akun' => 'Biaya Penyisihan Dana Pengurus', 'kategori' => 'BEBAN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'DUK019', 'nama_akun' => 'Biaya Penyisihan Dana Karyawan', 'kategori' => 'BEBAN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'DUK020', 'nama_akun' => 'Penyisihan Dana Pendidikan', 'kategori' => 'BEBAN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'DUK021', 'nama_akun' => 'Biaya Penyisihan Dana Sosial', 'kategori' => 'BEBAN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'DUK022', 'nama_akun' => 'Biaya Penyisihan Dana PDK', 'kategori' => 'BEBAN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'DUK023', 'nama_akun' => 'Biaya Penyisihan Pajak Pendapatan', 'kategori' => 'BEBAN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'DUK024', 'nama_akun' => 'SHU Anggota', 'kategori' => 'MODAL', 'jenis' => 'Kredit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AUTO090', 'nama_akun' => 'Biaya Administrasi', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+
+            ['kode_akun' => 'DD001', 'nama_akun' => 'Dana Dana', 'kategori' => 'KEWAJIBAN', 'jenis' => 'Kredit', 'saldo_awal' => 3288359, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'DD002', 'nama_akun' => 'Dana Pengurus', 'kategori' => 'KEWAJIBAN', 'jenis' => 'Kredit', 'saldo_awal' => 12531370, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'DD003', 'nama_akun' => 'Dana Pendidikan', 'kategori' => 'KEWAJIBAN', 'jenis' => 'Kredit', 'saldo_awal' => 42371113, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'DD004', 'nama_akun' => 'Dana Karyawan', 'kategori' => 'KEWAJIBAN', 'jenis' => 'Kredit', 'saldo_awal' => 6375410, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'DD005', 'nama_akun' => 'Dana Insentif', 'kategori' => 'KEWAJIBAN', 'jenis' => 'Kredit', 'saldo_awal' => 1250000, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'DD006', 'nama_akun' => 'Dana Supervisi', 'kategori' => 'KEWAJIBAN', 'jenis' => 'Kredit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'DD007', 'nama_akun' => 'Beban yang harus di bayar', 'kategori' => 'KEWAJIBAN', 'jenis' => 'Kredit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'DD008', 'nama_akun' => 'Dana RAT', 'kategori' => 'KEWAJIBAN', 'jenis' => 'Kredit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'DD009', 'nama_akun' => 'Dana Kesejahteraan', 'kategori' => 'KEWAJIBAN', 'jenis' => 'Kredit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'DD010', 'nama_akun' => 'Dana SHU Tahun Lalu', 'kategori' => 'KEWAJIBAN', 'jenis' => 'Kredit', 'saldo_awal' => 92701556, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'DD011', 'nama_akun' => 'Titipan Pemilihan Pengurus', 'kategori' => 'KEWAJIBAN', 'jenis' => 'Kredit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'DD012', 'nama_akun' => 'SHU Tahun Sekarang', 'kategori' => 'KEWAJIBAN', 'jenis' => 'Kredit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'KJP001', 'nama_akun' => 'Dana Sehat', 'kategori' => 'KEWAJIBAN', 'jenis' => 'Kredit', 'saldo_awal' => 11662000, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'KJP002', 'nama_akun' => 'Titipan Simpanan Pokok/Simpanan Wajib', 'kategori' => 'KEWAJIBAN', 'jenis' => 'Kredit', 'saldo_awal' => 7901955, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'KJP003', 'nama_akun' => 'Titipan Dana-Dana', 'kategori' => 'KEWAJIBAN', 'jenis' => 'Kredit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'KJP004', 'nama_akun' => 'Titipan CAP', 'kategori' => 'KEWAJIBAN', 'jenis' => 'Kredit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'KJP005', 'nama_akun' => 'Titipan Biaya Pajak', 'kategori' => 'KEWAJIBAN', 'jenis' => 'Kredit', 'saldo_awal' => 42368900, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'KJP007', 'nama_akun' => 'Pemupukan Modal Tetap', 'kategori' => 'KEWAJIBAN', 'jenis' => 'Kredit', 'saldo_awal' => 127500000, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'KJP008', 'nama_akun' => 'Tabungan Pesangon Karyawan', 'kategori' => 'KEWAJIBAN', 'jenis' => 'Kredit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'KJP009', 'nama_akun' => 'Pinjaman Pihak Ke 2', 'kategori' => 'KEWAJIBAN', 'jenis' => 'Kredit', 'saldo_awal' => 20300815, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'ML001', 'nama_akun' => 'Iuran Dana Sehat', 'kategori' => 'MODAL', 'jenis' => 'Kredit', 'saldo_awal' => 329550, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'ML002', 'nama_akun' => 'Cadangan Likuiditas', 'kategori' => 'MODAL', 'jenis' => 'Kredit', 'saldo_awal' => 74000000, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'ML003', 'nama_akun' => 'Cadangan Koperasi', 'kategori' => 'MODAL', 'jenis' => 'Kredit', 'saldo_awal' => 477673852, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'ML004', 'nama_akun' => 'Dana Risiko', 'kategori' => 'MODAL', 'jenis' => 'Kredit', 'saldo_awal' => 200845475, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'ML005', 'nama_akun' => 'PJKR', 'kategori' => 'MODAL', 'jenis' => 'Kredit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'ML006', 'nama_akun' => 'SHU', 'kategori' => 'MODAL', 'jenis' => 'Kredit', 'saldo_awal' => 70962636, 'created_at' => $now, 'updated_at' => $now],
+
+            ['kode_akun' => 'AUTO091', 'nama_akun' => 'Biaya Penyusutan Inventaris Tanah', 'kategori' => 'LAIN-LAIN', 'jenis' => 'Debit', 'saldo_awal' => 17000000, 'created_at' => $now, 'updated_at' => $now],
+            ['kode_akun' => 'AST006', 'nama_akun' => 'Akumulasi Penyusutan Inventaris Tanah', 'kategori' => 'ASSET', 'jenis' => 'Kredit', 'saldo_awal' => 0.00, 'created_at' => $now, 'updated_at' => $now],
+
+        ];
+
+        // Menggunakan Query Builder untuk insert batch
+        $this->db->table('akun')->insertBatch($data);
+
+        // 3. Aktifkan kembali Foreign Key Checks
+        $this->db->query('SET FOREIGN_KEY_CHECKS=1;');
+
+        // Optional: Tampilkan pesan di CLI saat seeder berjalan
+        // echo "AkunSeeder executed successfully with updated names.\n";
+    }
+}
